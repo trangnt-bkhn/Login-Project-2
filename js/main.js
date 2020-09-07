@@ -1,5 +1,6 @@
 const inputs = document.querySelectorAll(".input");
 
+
 var objectPeople = [
 	{
 		username: "son",
@@ -15,7 +16,7 @@ function addcl(){
 	//console.log(this);
 	var parent = this.parentNode.parentNode;
 	parent.classList.add("focus");
-	console.log(this.value);
+	//console.log(this.value);
 	// When 
 	// if(this.value != "") {
 	// 	parent.classList.remove("forgot");
@@ -37,43 +38,51 @@ function remcl(){
 function showAlert() {
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
-	
+	var textus = document.getElementById("forgotUS");
+	var usern = document.getElementById("one");
+	var textpass = document.getElementById("forgotP");
+	var passw = document.getElementById("pass");
+
 	//Check Password and show alert
 	for (var people of objectPeople) {
 		if (username == people.username && password == people.password) {
-			document.getElementById("forgotUS").classList.remove("forgot");
-			document.getElementById("one").classList.remove("forgot");
-			document.getElementById("forgotP").classList.remove("forgot");
-			document.getElementById("pass").classList.remove("forgot");
+			var forgotEle = document.querySelectorAll(".forgot");
+			forgotEle.forEach(ele=>ele.classList.remove("forgot"));
 
-			alert("Username: " + username + " with password: " + password + " is logged in successfully!");
+			// document.getElementById("forgotUS").classList.remove("forgot");
+			// document.getElementById("one").classList.remove("forgot");
+			// document.getElementById("forgotP").classList.remove("forgot");
+			// document.getElementById("pass").classList.remove("forgot");
+
+			setTimeout(function(){ alert("Username: " + username + " with password: " + password + " is logged in successfully!")
+; }, 300);
 			return;
 		}
 
 		if (username == "") {
-			document.getElementById("forgotUS").innerHTML="Enter an username!";
-			document.getElementById("forgotUS").classList.add("forgot");
-			document.getElementById("one").classList.add("forgot");
+			textus.innerHTML="Enter an username!";
+			textus.classList.add("forgot");
+			usern.classList.add("forgot");
 		} else if (username != people.username) {
-			document.getElementById("forgotUS").innerHTML="Invalid username";
-			document.getElementById("forgotUS").classList.add("forgot");
-			document.getElementById("one").classList.add("forgot");
+			textus.innerHTML="Invalid username";
+			textus.classList.add("forgot");
+			usern.classList.add("forgot");
 		} else if (username == people.username) {
-			document.getElementById("forgotUS").classList.remove("forgot");
-			document.getElementById("one").classList.remove("forgot");
+			textus.classList.remove("forgot");
+			usern.classList.remove("forgot");
 		}
 
 		if (password == "") {
-			document.getElementById("forgotP").innerHTML="Enter a password!";
-			document.getElementById("forgotP").classList.add("forgot");
-			document.getElementById("pass").classList.add("forgot");
+			textpass.innerHTML="Enter a password!";
+			textpass.classList.add("forgot");
+			passw.classList.add("forgot");
 		} else if (password != people.password) {
-			document.getElementById("forgotP").innerHTML="Wrong password!";
-			document.getElementById("forgotP").classList.add("forgot");
-			document.getElementById("pass").classList.add("forgot");
+			textpass.innerHTML="Wrong password!";
+			textpass.classList.add("forgot");
+			passw.classList.add("forgot");
 		} else if (password == people.password) {
-			document.getElementById("forgotP").classList.remove("forgot");
-			document.getElementById("pass").classList.remove("forgot");
+			textpass.classList.remove("forgot");
+			passw.classList.remove("forgot");
 		}
 	}
 	// alert("Username: " + username + " or password: " + password + " is incorrect!");
